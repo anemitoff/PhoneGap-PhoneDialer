@@ -1,6 +1,6 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.teamnemitoff.phonedialer"
-    version="0.3.0">
+    version="0.3.1">
     <name>PhoneDialer</name>
     <description>Dials Phone without extra confirmation pop-up</description>
     <license>Apache 2.0</license>
@@ -27,6 +27,7 @@
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
             <uses-permission android:name="android.permission.CALL_PHONE" />
+            <uses-feature android:name="android.hardware.telephony" android:required="false" />
         </config-file>
         <source-file 
             src="src/android/PhoneDialer.java" 
