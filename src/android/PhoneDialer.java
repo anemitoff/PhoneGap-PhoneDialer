@@ -12,6 +12,9 @@ public class PhoneDialer extends CordovaPlugin {
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 	    try {
+	TelephonyManager telMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+    	if(tm.getSimState() != TelephonyManager.SIM_STATE_ABSENT)
+		    {
 	    	String phoneNumber = args.getString(0);
 	    	Uri uri = Uri.parse("tel:"+phoneNumber);
             Intent callIntent = new Intent(Intent.ACTION_CALL);
@@ -19,6 +22,7 @@ public class PhoneDialer extends CordovaPlugin {
             this.cordova.getActivity().startActivity(callIntent);
             callbackContext.success();
             return true;
+		    }
         } catch (Exception e) {
         	String msg = "Exception Dialing Phone Number: " + e.getMessage();
         	System.err.println(msg);
